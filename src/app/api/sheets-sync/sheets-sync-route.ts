@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
     // Create new spreadsheet
     const spreadsheet = await sheets.spreadsheets.create({
       requestBody: {
-        properties: { title: `SSE — Shakir's Sales Engine — ${campaign.name}` },
+        properties: { title: `SSE — Shakir Sales Engine — ${campaign.name}` },
         sheets: [{ properties: { title: 'Leads' } }],
       },
     })
