@@ -11,6 +11,7 @@ import {
 } from 'lucide-react'
 import CelebrationModal from '@/components/modals/CelebrationModal'
 import NewCampaignModal from '@/components/modals/NewCampaignModal'
+import DailyWisdom from '@/components/ui/DailyWisdom'
 
 export default function Dashboard() {
   const [stats, setStats] = useState<UserStats | null>(null)
@@ -105,7 +106,7 @@ export default function Dashboard() {
         <div className="flex items-start justify-between">
           <div>
             <h1 className="font-display text-2xl md:text-3xl font-bold">
-              {greeting} 👊
+              {greeting}, Usama 👊
             </h1>
             <p className="text-gray-400 mt-1">
               {todayTasks.length > 0
@@ -117,6 +118,9 @@ export default function Dashboard() {
             <Target size={16} /> Daily Focus <ArrowRight size={14} />
           </Link>
         </div>
+
+        {/* Daily Wisdom */}
+        <DailyWisdom />
 
         {/* Stats row */}
         {stats && levelInfo && (

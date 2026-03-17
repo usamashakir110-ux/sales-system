@@ -5,9 +5,10 @@ import { Lead, Touchpoint, Task, Template, LeadStatus, OutreachChannel, STATUS_C
 import { format, addDays } from 'date-fns'
 import {
   X, Phone, Mail, MessageSquare, Linkedin, Plus, Pin, Star,
-  Clock, Calendar, ChevronDown, Save, Trash2, Trophy, Zap, ExternalLink
+  Clock, Calendar, ChevronDown, Save, Trash2, Trophy, Zap, ExternalLink, Sparkles
 } from 'lucide-react'
 import CelebrationModal from './CelebrationModal'
+import AIAssistantModal from './AIAssistantModal'
 
 interface Props { lead: Lead; onClose: () => void; onUpdated: () => void }
 
@@ -48,18 +49,22 @@ export default function LeadDetailModal({ lead, onClose, onUpdated }: Props) {
   const [status, setStatus] = useState<LeadStatus>(lead.status as LeadStatus)
   const [wonLostReason, setWonLostReason] = useState(lead.won_lost_reason || '')
   const [saving, setSaving] = useState(false)
+  const [showAI, setShowAI] = useState(false)
+  const [currentCampaign, setCurrentCampaign] = useState<any>(null)
 
   useEffect(() => { loadData() }, [])
 
   async function loadData() {
-    const [{ data: tp }, { data: t }, { data: tmpl }] = await Promise.all([
+    const [{ data: tp }, { data: t }, { data: tmpl }, { data: camp }] = await Promise.all([
       supabase.from('touchpoints').select('*').eq('lead_id', lead.id).order('created_at', { ascending: false }),
       supabase.from('tasks').select('*').eq('lead_id', lead.id).order('due_at'),
       supabase.from('templates').select('*').order('channel'),
+      supabase.from('campaigns').select('*').eq('id', lead.campaign_id).single(),
     ])
     if (tp) setTouchpoints(tp)
     if (t) setTasks(t)
     if (tmpl) setTemplates(tmpl)
+    if (camp) setCurrentCampaign(camp)
   }
 
   async function logTouchpoint() {
@@ -209,7 +214,17 @@ export default function LeadDetailModal({ lead, onClose, onUpdated }: Props) {
                 )}
               </div>
             </div>
-            <button onClick={onClose} className="text-gray-400 hover:text-white ml-2"><X size={20} /></button>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setShowAI(true)}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all"
+                style={{ background: 'linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,255,157,0.15))', border: '1px solid rgba(0,212,255,0.3)', color: 'var(--brand)' }}
+              >
+                <Sparkles size={12} />
+                AI Assist
+              </button>
+              <button onClick={onClose} className="text-gray-400 hover:text-white ml-2"><X size={20} /></button>
+            </div>
           </div>
 
           {/* Tabs */}
@@ -420,6 +435,14 @@ export default function LeadDetailModal({ lead, onClose, onUpdated }: Props) {
         </div>
       </div>
 
+      {showAI && currentCampaign && (
+        <AIAssistantModal
+          lead={currentLead}
+          campaign={currentCampaign}
+          touchpoints={touchpoints}
+          onClose={() => setShowAI(false)}
+        />
+      )}
       {celebration && (
         <CelebrationModal
           title={celebration.title}
