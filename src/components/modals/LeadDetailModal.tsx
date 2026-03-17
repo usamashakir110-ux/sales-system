@@ -95,7 +95,7 @@ export default function LeadDetailModal({ lead, onClose, onUpdated }: Props) {
     const col = channel === 'call' ? 'weekly_calls' : channel === 'email' ? 'weekly_emails' : null
     if (col) {
       const { data: s } = await supabase.from('user_stats').select(col).single()
-      if (s) await supabase.from('user_stats').update({ [col]: (s[col] || 0) + 1 })
+      if (s) await supabase.from('user_stats').update({ [col]: ((s as Record<string, number>)[col] || 0) + 1 })
     }
 
     setOutcome(''); setTpNotes('')
