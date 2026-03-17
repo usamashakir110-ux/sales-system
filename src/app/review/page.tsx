@@ -46,8 +46,8 @@ export default function ReviewPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] pb-20">
-      <div className="sticky top-0 z-30 bg-[#0a0a0f]/90 backdrop-blur-sm border-b border-[var(--border)] px-4 py-4">
+    <div className="min-h-screen bg-[#080c12] pb-20">
+      <div className="sticky top-0 z-30 bg-[#080c12]/90 backdrop-blur-sm border-b border-[var(--border)] px-4 py-4">
         <div className="max-w-xl mx-auto flex items-center gap-3">
           <Link href="/" className="text-gray-400 hover:text-white"><ArrowLeft size={20} /></Link>
           <div>
@@ -101,7 +101,7 @@ export default function ReviewPage() {
           <div className="flex gap-2 justify-between">
             {moods.map(m => (
               <button key={m.val} onClick={() => setMood(m.val)}
-                className={`flex-1 py-3 rounded-xl text-center transition-all ${mood === m.val ? 'bg-orange-500/20 border border-orange-500/50' : 'glass hover:bg-white/5'}`}>
+                className={`flex-1 py-3 rounded-xl text-center transition-all ${mood === m.val ? 'bg-cyan-500/20 border border-cyan-500/50' : 'glass hover:bg-white/5'}`}>
                 <div className="text-2xl">{m.emoji}</div>
                 <div className="text-xs text-gray-400 mt-1">{m.label}</div>
               </button>

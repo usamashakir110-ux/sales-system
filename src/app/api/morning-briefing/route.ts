@@ -65,18 +65,18 @@ async function handler(req: NextRequest) {
   ).join('')
 
   await resend.emails.send({
-    from: 'SalesOS <morning@resend.dev>',
+    from: 'SSE <morning@resend.dev>',
     to: process.env.REMINDER_EMAIL,
-    subject: `☀️ Good morning — Your SalesOS briefing for ${format(new Date(), 'EEEE, MMMM d')}`,
+    subject: `☀️ Good morning, Usama — Your SSE briefing for ${format(new Date(), 'EEEE, MMMM d')}`,
     html: `
-      <div style="font-family: sans-serif; max-width: 560px; margin: 0 auto; padding: 32px 24px; background: #0a0a0f; color: #e5e7eb; border-radius: 16px;">
-        <h1 style="color: #f97316; font-size: 24px; margin: 0 0 8px;">☀️ Morning Briefing</h1>
+      <div style="font-family: sans-serif; max-width: 560px; margin: 0 auto; padding: 32px 24px; background: #080c12; color: #e5e7eb; border-radius: 16px;">
+        <h1 style="color: #00d4ff; font-size: 24px; margin: 0 0 8px;">☀️ Morning Briefing</h1>
         <p style="color: #9ca3af; margin: 0 0 24px;">${format(new Date(), 'EEEE, MMMM d, yyyy')}</p>
 
         ${stats ? `
-        <div style="background: #1c1c27; border-radius: 12px; padding: 16px; margin-bottom: 20px; display: flex; gap: 24px;">
-          <div><div style="color: #f97316; font-size: 24px; font-weight: bold;">${stats.streak_days}</div><div style="color: #9ca3af; font-size: 12px;">🔥 day streak</div></div>
-          <div><div style="color: #f97316; font-size: 24px; font-weight: bold;">${stats.total_xp.toLocaleString()}</div><div style="color: #9ca3af; font-size: 12px;">⚡ XP</div></div>
+        <div style="background: #0d1117; border-radius: 12px; padding: 16px; margin-bottom: 20px; display: flex; gap: 24px;">
+          <div><div style="color: #00d4ff; font-size: 24px; font-weight: bold;">${stats.streak_days}</div><div style="color: #9ca3af; font-size: 12px;">🔥 day streak</div></div>
+          <div><div style="color: #00d4ff; font-size: 24px; font-weight: bold;">${stats.total_xp.toLocaleString()}</div><div style="color: #9ca3af; font-size: 12px;">⚡ XP</div></div>
           ${stats.streak_multiplier > 1 ? `<div><div style="color: #34d399; font-size: 24px; font-weight: bold;">${stats.streak_multiplier}x</div><div style="color: #9ca3af; font-size: 12px;">XP multiplier</div></div>` : ''}
         </div>` : ''}
 
@@ -85,7 +85,7 @@ async function handler(req: NextRequest) {
         <ul style="margin: 0 0 20px; padding-left: 20px;">${callbacksList}</ul>` : ''}
 
         ${hotLeads && hotLeads.length > 0 ? `
-        <h2 style="color: #f97316; font-size: 16px; margin: 0 0 8px;">🔥 Hot Leads to Contact</h2>
+        <h2 style="color: #00d4ff; font-size: 16px; margin: 0 0 8px;">🔥 Hot Leads to Contact</h2>
         <ul style="margin: 0 0 20px; padding-left: 20px;">${hotLeadsList}</ul>` : ''}
 
         ${tasks && tasks.length > 0 ? `
@@ -93,10 +93,10 @@ async function handler(req: NextRequest) {
         <ul style="margin: 0 0 20px; padding-left: 20px;">${tasksList}</ul>` : ''}
 
         <div style="border-top: 1px solid #374151; padding-top: 20px; margin-top: 8px; text-align: center;">
-          <a href="${process.env.NEXT_PUBLIC_APP_URL}/daily" style="background: #f97316; color: white; padding: 14px 32px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 16px; display: inline-block;">
+          <a href="${process.env.NEXT_PUBLIC_APP_URL}/daily" style="background: #00d4ff; color: white; padding: 14px 32px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 16px; display: inline-block;">
             Open Daily Focus →
           </a>
-          <p style="color: #4b5563; font-size: 12px; margin-top: 16px;">Today's the day. Make it count. 💪</p>
+          <p style="color: #4b5563; font-size: 12px; margin-top: 16px;">Let's get it, Usama. Today is yours. 💪</p>
         </div>
       </div>
     `

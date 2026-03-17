@@ -2,47 +2,84 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
 :root {
-  --font-display: 'Sora', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
-  --brand: #f97316;
-  --brand-dim: #c2410c;
-  --surface: #13131a;
-  --surface-2: #1c1c27;
-  --surface-3: #25253a;
-  --border: rgba(255,255,255,0.08);
-  --border-bright: rgba(255,255,255,0.15);
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* SSE Brand — neon blue/green */
+  --brand: #00d4ff;
+  --brand-dim: #0099cc;
+  --brand-green: #00ff9d;
+  --brand-green-dim: #00cc7a;
+  --brand-glow: rgba(0, 212, 255, 0.15);
+  --brand-green-glow: rgba(0, 255, 157, 0.15);
+
+  /* Surfaces */
+  --surface: #0d1117;
+  --surface-2: #161b22;
+  --surface-3: #1c2230;
+  --surface-4: #21293a;
+
+  /* Borders */
+  --border: rgba(0, 212, 255, 0.08);
+  --border-bright: rgba(0, 212, 255, 0.2);
+  --border-green: rgba(0, 255, 157, 0.15);
 }
 
 * { box-sizing: border-box; }
 
 body {
-  background: #0a0a0f;
+  background: #080c12;
   min-height: 100vh;
+  font-family: var(--font-body);
+}
+
+/* Subtle grid background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: rgba(0,212,255,0.2); border-radius: 2px; }
 
 /* Glass card */
 .glass {
-  background: rgba(28, 28, 39, 0.8);
+  background: rgba(13, 17, 23, 0.85);
   border: 1px solid var(--border);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
 }
 
 .glass-bright {
-  background: rgba(37, 37, 58, 0.9);
+  background: rgba(22, 27, 34, 0.95);
   border: 1px solid var(--border-bright);
+  box-shadow: 0 0 24px rgba(0,212,255,0.05);
 }
 
-/* XP Bar shimmer */
+/* Neon glow effects */
+.glow-blue { box-shadow: 0 0 20px rgba(0,212,255,0.2), 0 0 40px rgba(0,212,255,0.05); }
+.glow-green { box-shadow: 0 0 20px rgba(0,255,157,0.2), 0 0 40px rgba(0,255,157,0.05); }
+.text-glow-blue { text-shadow: 0 0 20px rgba(0,212,255,0.5); }
+.text-glow-green { text-shadow: 0 0 20px rgba(0,255,157,0.5); }
+
+/* XP Bar shimmer — cyan to green */
 .xp-bar-fill {
-  background: linear-gradient(90deg, #f97316, #fb923c, #f97316);
+  background: linear-gradient(90deg, #00d4ff, #00ff9d, #00d4ff);
   background-size: 200% 100%;
   animation: shimmer 2s linear infinite;
+  box-shadow: 0 0 12px rgba(0,212,255,0.4);
 }
 
 @keyframes shimmer {
@@ -55,7 +92,7 @@ body {
 .flame-dim { animation: flicker-dim 2s ease-in-out infinite; }
 .flame-normal { animation: flicker 1.5s ease-in-out infinite; }
 .flame-hot { animation: flicker 0.8s ease-in-out infinite; }
-.flame-inferno { animation: flicker 0.4s ease-in-out infinite; filter: drop-shadow(0 0 8px #f97316); }
+.flame-inferno { animation: flicker 0.4s ease-in-out infinite; filter: drop-shadow(0 0 8px #00d4ff); }
 
 @keyframes flicker-dim {
   0%,100% { opacity: 0.4; transform: scale(0.95); }
@@ -95,15 +132,33 @@ body {
 
 /* Input style */
 .input {
-  @apply w-full bg-[var(--surface-3)] border border-[var(--border)] rounded-lg px-3 py-2 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-orange-500 transition-colors;
+  background: var(--surface-3);
+  border: 1px solid var(--border);
+  @apply w-full rounded-lg px-3 py-2 text-sm text-white placeholder-gray-500 focus:outline-none transition-colors;
+}
+.input:focus {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 2px rgba(0,212,255,0.1);
 }
 
 .btn-primary {
-  @apply bg-orange-500 hover:bg-orange-600 text-white font-medium px-4 py-2 rounded-lg transition-all active:scale-95 text-sm;
+  background: linear-gradient(135deg, var(--brand), var(--brand-green));
+  @apply text-gray-900 font-semibold px-4 py-2 rounded-lg transition-all active:scale-95 text-sm;
+  box-shadow: 0 0 16px rgba(0,212,255,0.25);
+}
+.btn-primary:hover {
+  box-shadow: 0 0 24px rgba(0,212,255,0.4);
+  transform: translateY(-1px);
 }
 
 .btn-ghost {
-  @apply bg-transparent hover:bg-white/5 text-gray-400 hover:text-white border border-[var(--border)] font-medium px-4 py-2 rounded-lg transition-all text-sm;
+  background: transparent;
+  border: 1px solid var(--border);
+  @apply text-gray-400 hover:text-white font-medium px-4 py-2 rounded-lg transition-all text-sm;
+}
+.btn-ghost:hover {
+  border-color: var(--border-bright);
+  background: rgba(0,212,255,0.05);
 }
 
 /* Countdown urgent pulse */
@@ -115,3 +170,32 @@ body {
   0%,100% { background-color: rgba(239, 68, 68, 0.1); }
   50% { background-color: rgba(239, 68, 68, 0.25); }
 }
+
+/* SSE scan line effect on nav */
+.sse-nav {
+  position: relative;
+  overflow: hidden;
+}
+.sse-nav::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--brand), var(--brand-green), transparent);
+}
+
+/* Neon accent line */
+.neon-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--brand), var(--brand-green), transparent);
+  opacity: 0.5;
+}
+
+/* SSE Logo pulse */
+@keyframes logo-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+.logo-pulse { animation: logo-pulse 3s ease-in-out infinite; }

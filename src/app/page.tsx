@@ -57,11 +57,19 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f]">
+    <div className="min-h-screen bg-[#080c12]">
       {/* Top nav */}
-      <nav className="border-b border-[var(--border)] px-6 py-4 flex items-center justify-between sticky top-0 z-40 bg-[#0a0a0f]/90 backdrop-blur-sm">
+      <nav className="border-b border-[var(--border)] px-6 py-4 flex items-center justify-between sticky top-0 z-40 bg-[#080c12]/90 backdrop-blur-sm">
         <div className="flex items-center gap-6">
-          <span className="font-display font-bold text-xl text-orange-400">SalesOS</span>
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{background: 'linear-gradient(135deg, #00d4ff, #00ff9d)'}}>
+              <span className="text-gray-900 font-bold text-xs">SSE</span>
+            </div>
+            <div>
+              <span className="font-display font-bold text-sm text-white">Shakir's Sales Engine</span>
+              <div className="text-xs font-mono" style={{color: 'var(--brand)'}}>usama.shakir</div>
+            </div>
+          </div>
           <div className="hidden md:flex items-center gap-1">
             {[
               { href: '/', label: 'Dashboard' },
@@ -80,10 +88,10 @@ export default function Dashboard() {
         <div className="flex items-center gap-3">
           {stats && (
             <div className="flex items-center gap-2 glass px-3 py-1.5 rounded-full">
-              <Zap size={14} className="text-orange-400" />
+              <Zap size={14} className="text-cyan-400" />
               <span className="text-sm font-medium">{stats.total_xp.toLocaleString()} XP</span>
               {stats.streak_multiplier > 1 && (
-                <span className="text-xs bg-orange-500/20 text-orange-300 px-1.5 py-0.5 rounded-full">{stats.streak_multiplier}x</span>
+                <span className="text-xs bg-cyan-500/20 text-cyan-300 px-1.5 py-0.5 rounded-full">{stats.streak_multiplier}x</span>
               )}
             </div>
           )}
@@ -120,7 +128,7 @@ export default function Dashboard() {
                 <div className="font-display font-bold text-2xl">{stats.streak_days}</div>
                 <div className="text-xs text-gray-400">Day streak</div>
                 {stats.streak_multiplier > 1 && (
-                  <div className="text-xs text-orange-400 font-medium mt-0.5">{stats.streak_multiplier}x XP active!</div>
+                  <div className="text-xs text-cyan-400 font-medium mt-0.5">{stats.streak_multiplier}x XP active!</div>
                 )}
               </div>
             </div>
@@ -130,9 +138,9 @@ export default function Dashboard() {
               <div className="flex items-center justify-between mb-2">
                 <div>
                   <div className="font-display font-bold text-lg">Lv.{levelInfo.current.level}</div>
-                  <div className="text-xs text-orange-400 font-medium">{levelInfo.current.title}</div>
+                  <div className="text-xs text-cyan-400 font-medium">{levelInfo.current.title}</div>
                 </div>
-                <Star size={20} className="text-orange-400" />
+                <Star size={20} className="text-cyan-400" />
               </div>
               <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
                 <div className="xp-bar-fill h-full rounded-full transition-all duration-1000"
@@ -164,8 +172,8 @@ export default function Dashboard() {
 
             {/* Just One button */}
             <Link href="/daily?justOne=1"
-              className="glass rounded-2xl p-4 flex flex-col items-center justify-center gap-2 hover:bg-white/5 transition-all group cursor-pointer border border-dashed border-orange-500/30 hover:border-orange-500/60">
-              <Coffee size={24} className="text-orange-400 group-hover:scale-110 transition-transform" />
+              className="glass rounded-2xl p-4 flex flex-col items-center justify-center gap-2 hover:bg-white/5 transition-all group cursor-pointer border border-dashed border-cyan-500/30 hover:border-cyan-500/60">
+              <Coffee size={24} className="text-cyan-400 group-hover:scale-110 transition-transform" />
               <div className="text-sm font-medium text-center">Just One Thing</div>
               <div className="text-xs text-gray-500 text-center">Low energy? Start here.</div>
             </Link>
@@ -176,7 +184,7 @@ export default function Dashboard() {
         {callbacks.length > 0 && (
           <div className="glass rounded-2xl p-4">
             <div className="flex items-center gap-2 mb-3">
-              <Clock size={16} className="text-orange-400" />
+              <Clock size={16} className="text-cyan-400" />
               <span className="font-medium text-sm">Scheduled Callbacks</span>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
@@ -189,7 +197,7 @@ export default function Dashboard() {
                       <div className="text-sm font-medium">{lead.name}</div>
                       <div className="text-xs text-gray-400">{lead.company}</div>
                     </div>
-                    <div className={`font-display font-bold text-lg ${cd.urgent ? 'text-red-400' : 'text-orange-400'}`}>
+                    <div className={`font-display font-bold text-lg ${cd.urgent ? 'text-red-400' : 'text-cyan-400'}`}>
                       {cd.label}
                     </div>
                   </div>
@@ -257,7 +265,7 @@ export default function Dashboard() {
           <div>
             <div className="flex items-center justify-between mb-3">
               <h2 className="font-display font-semibold text-lg">Due Today</h2>
-              <Link href="/daily" className="text-sm text-orange-400 hover:text-orange-300 flex items-center gap-1">
+              <Link href="/daily" className="text-sm text-cyan-400 hover:text-cyan-300 flex items-center gap-1">
                 View all <ChevronRight size={14} />
               </Link>
             </div>

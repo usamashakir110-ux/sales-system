@@ -43,8 +43,8 @@ export default function TrophyPage() {
   const moodEmojis = ['', '😩', '😕', '😐', '😊', '🔥']
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] pb-20">
-      <div className="sticky top-0 z-30 bg-[#0a0a0f]/90 backdrop-blur-sm border-b border-[var(--border)] px-4 py-4">
+    <div className="min-h-screen bg-[#080c12] pb-20">
+      <div className="sticky top-0 z-30 bg-[#080c12]/90 backdrop-blur-sm border-b border-[var(--border)] px-4 py-4">
         <div className="max-w-2xl mx-auto flex items-center gap-3">
           <Link href="/" className="text-gray-400 hover:text-white"><ArrowLeft size={20} /></Link>
           <h1 className="font-display font-bold text-lg">Trophy Case</h1>
@@ -56,12 +56,12 @@ export default function TrophyPage() {
         {/* Level card */}
         {stats && levelInfo && (
           <div className="glass rounded-3xl p-6 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/5 rounded-full -translate-y-1/2 translate-x-1/2" />
+            <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/5 rounded-full -translate-y-1/2 translate-x-1/2" />
             <div className="flex items-start justify-between mb-4">
               <div>
                 <div className="text-sm text-gray-400 mb-1">Current Level</div>
-                <div className="font-display font-black text-5xl text-orange-400">{levelInfo.current.level}</div>
-                <div className="font-display font-semibold text-lg text-orange-300 mt-1">{levelInfo.current.title}</div>
+                <div className="font-display font-black text-5xl text-cyan-400">{levelInfo.current.level}</div>
+                <div className="font-display font-semibold text-lg text-cyan-300 mt-1">{levelInfo.current.title}</div>
               </div>
               <div className="text-right">
                 <div className="text-sm text-gray-400">Total XP</div>
@@ -69,7 +69,7 @@ export default function TrophyPage() {
                 {stats.streak_days > 0 && (
                   <div className="flex items-center justify-end gap-1 mt-1">
                     <span className="text-xl">🔥</span>
-                    <span className="font-bold text-orange-400">{stats.streak_days} day streak</span>
+                    <span className="font-bold text-cyan-400">{stats.streak_days} day streak</span>
                   </div>
                 )}
               </div>
@@ -86,7 +86,7 @@ export default function TrophyPage() {
               </div>
             )}
             {stats.streak_multiplier > 1 && (
-              <div className="mt-3 bg-orange-500/10 border border-orange-500/20 rounded-xl px-3 py-2 text-sm text-orange-300">
+              <div className="mt-3 bg-cyan-500/10 border border-cyan-500/20 rounded-xl px-3 py-2 text-sm text-cyan-300">
                 🔥 Hot Streak! You're earning <strong>{stats.streak_multiplier}x XP</strong> on all actions.
               </div>
             )}
@@ -105,7 +105,7 @@ export default function TrophyPage() {
               { label: 'Messages', count: msgCount, icon: '💬', color: 'text-purple-400' },
               { label: 'LinkedIn', count: liCount, icon: '💼', color: 'text-sky-400' },
               { label: 'Deals Won', count: weekDeals, icon: '🤝', color: 'text-green-400' },
-              { label: 'XP Earned', count: weekXP, icon: '⚡', color: 'text-orange-400' },
+              { label: 'XP Earned', count: weekXP, icon: '⚡', color: 'text-cyan-400' },
             ].map(item => (
               <div key={item.label} className="glass rounded-2xl p-4 flex items-center gap-3">
                 <span className="text-2xl">{item.icon}</span>

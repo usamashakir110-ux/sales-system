@@ -179,7 +179,7 @@ export default function LeadDetailModal({ lead, onClose, onUpdated }: Props) {
   return (
     <>
       <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-end md:items-center justify-center p-0 md:p-4" onClick={onClose}>
-        <div className="bg-[#13131a] border border-[var(--border)] rounded-t-3xl md:rounded-2xl w-full md:max-w-2xl max-h-[90vh] flex flex-col"
+        <div className="bg-[var(--surface)] border border-[var(--border)] rounded-t-3xl md:rounded-2xl w-full md:max-w-2xl max-h-[90vh] flex flex-col"
           onClick={e => e.stopPropagation()}>
 
           {/* Header */}
@@ -192,7 +192,7 @@ export default function LeadDetailModal({ lead, onClose, onUpdated }: Props) {
                   setCurrentLead(l => ({ ...l, is_pinned: newPin }))
                   await supabase.from('leads').update({ is_pinned: newPin }).eq('id', lead.id)
                 }}>
-                  <Pin size={16} className={currentLead.is_pinned ? 'text-orange-400 fill-orange-400' : 'text-gray-600 hover:text-gray-400'} />
+                  <Pin size={16} className={currentLead.is_pinned ? 'text-cyan-400 fill-orange-400' : 'text-gray-600 hover:text-gray-400'} />
                 </button>
               </div>
               <div className="text-sm text-gray-400">{lead.company}</div>
@@ -203,7 +203,7 @@ export default function LeadDetailModal({ lead, onClose, onUpdated }: Props) {
                   {displayScore}
                 </div>
                 {currentLead.scheduled_callback_at && (
-                  <span className="text-xs text-orange-400 flex items-center gap-1">
+                  <span className="text-xs text-cyan-400 flex items-center gap-1">
                     <Clock size={12} /> {format(new Date(currentLead.scheduled_callback_at), 'MMM d h:mm a')}
                   </span>
                 )}
@@ -217,10 +217,10 @@ export default function LeadDetailModal({ lead, onClose, onUpdated }: Props) {
             {(['activity', 'details', 'tasks'] as const).map(t => (
               <button key={t} onClick={() => setTab(t)}
                 className={`px-4 py-3 text-sm font-medium capitalize transition-colors border-b-2 -mb-px
-                  ${tab === t ? 'border-orange-500 text-white' : 'border-transparent text-gray-400 hover:text-white'}`}>
+                  ${tab === t ? 'border-cyan-500 text-white' : 'border-transparent text-gray-400 hover:text-white'}`}>
                 {t}
                 {t === 'tasks' && tasks.filter(x => !x.is_done).length > 0 && (
-                  <span className="ml-1.5 bg-orange-500/20 text-orange-400 text-xs px-1.5 py-0.5 rounded-full">
+                  <span className="ml-1.5 bg-cyan-500/20 text-cyan-400 text-xs px-1.5 py-0.5 rounded-full">
                     {tasks.filter(x => !x.is_done).length}
                   </span>
                 )}
@@ -253,7 +253,7 @@ export default function LeadDetailModal({ lead, onClose, onUpdated }: Props) {
                   {/* Template button */}
                   {channelTemplates.length > 0 && (
                     <button onClick={() => setShowTemplate(s => !s)}
-                      className="text-xs text-orange-400 hover:text-orange-300 mb-2 flex items-center gap-1">
+                      className="text-xs text-cyan-400 hover:text-cyan-300 mb-2 flex items-center gap-1">
                       <Star size={12} /> Use template <ChevronDown size={12} className={showTemplate ? 'rotate-180' : ''} />
                     </button>
                   )}
@@ -302,7 +302,7 @@ export default function LeadDetailModal({ lead, onClose, onUpdated }: Props) {
                             {tp.notes && <div className="text-xs text-gray-400 mt-0.5 line-clamp-2">{tp.notes}</div>}
                             <div className="text-xs text-gray-600 mt-1">{format(new Date(tp.created_at), 'MMM d, h:mm a')}</div>
                           </div>
-                          <div className="text-xs text-orange-400 font-medium flex-shrink-0">+{tp.xp_earned}</div>
+                          <div className="text-xs text-cyan-400 font-medium flex-shrink-0">+{tp.xp_earned}</div>
                         </div>
                       ))}
                     </div>

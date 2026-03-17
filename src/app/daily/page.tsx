@@ -58,9 +58,9 @@ function DailyFocusContent() {
   const displayLeads = justOne ? hotLeads.slice(0, 1) : hotLeads
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] pb-20">
+    <div className="min-h-screen bg-[#080c12] pb-20">
       {/* Header */}
-      <div className="sticky top-0 z-30 bg-[#0a0a0f]/90 backdrop-blur-sm border-b border-[var(--border)] px-4 py-4">
+      <div className="sticky top-0 z-30 bg-[#080c12]/90 backdrop-blur-sm border-b border-[var(--border)] px-4 py-4">
         <div className="max-w-2xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Link href="/" className="text-gray-400 hover:text-white"><ArrowLeft size={20} /></Link>
@@ -121,7 +121,7 @@ function DailyFocusContent() {
                 className="flex items-center justify-between p-3.5 rounded-xl bg-[var(--surface-2)] border border-[var(--border)] hover:bg-white/5 cursor-pointer transition-all">
                 <div className="flex items-center gap-3">
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center font-display font-bold text-sm flex-shrink-0
-                    ${(lead.score_override ?? lead.score) >= 9 ? 'bg-green-500/20 text-green-400' : 'bg-orange-500/20 text-orange-400'}`}>
+                    ${(lead.score_override ?? lead.score) >= 9 ? 'bg-green-500/20 text-green-400' : 'bg-cyan-500/20 text-cyan-400'}`}>
                     {lead.score_override ?? lead.score}
                   </div>
                   <div>
@@ -183,7 +183,7 @@ function DailyFocusContent() {
 }
 
 function Section({ title, accent, children }: { title: string; accent: string; children: React.ReactNode }) {
-  const borderColor = accent === 'red' ? 'border-red-500/40' : accent === 'orange' ? 'border-orange-500/40' : accent === 'blue' ? 'border-blue-500/40' : 'border-gray-500/40'
+  const borderColor = accent === 'red' ? 'border-red-500/40' : accent === 'orange' ? 'border-cyan-500/40' : accent === 'blue' ? 'border-blue-500/40' : 'border-gray-500/40'
   return (
     <div>
       <h2 className="text-sm font-semibold text-gray-300 mb-2">{title}</h2>
@@ -204,7 +204,7 @@ function TaskItem({ task, onComplete }: { task: Task; onComplete: (id: string) =
         {task.lead && <div className="text-xs text-gray-500">{(task.lead as any).name}</div>}
       </div>
       <div className="flex items-center gap-2 flex-shrink-0">
-        {task.is_pinned && <Pin size={12} className="text-orange-400" />}
+        {task.is_pinned && <Pin size={12} className="text-cyan-400" />}
         {task.due_at && (
           <span className={`text-xs ${overdue ? 'text-red-400' : 'text-gray-500'}`}>
             {overdue ? '⚠' : ''} {format(new Date(task.due_at), 'h:mm a')}
@@ -217,7 +217,7 @@ function TaskItem({ task, onComplete }: { task: Task; onComplete: (id: string) =
 
 export default function DailyPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-[#0a0a0f] flex items-center justify-center text-gray-400">Loading...</div>}>
+    <Suspense fallback={<div className="min-h-screen bg-[#080c12] flex items-center justify-center text-gray-400">Loading...</div>}>
       <DailyFocusContent />
     </Suspense>
   )

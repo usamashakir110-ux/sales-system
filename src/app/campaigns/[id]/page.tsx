@@ -63,9 +63,9 @@ export default function CampaignPage() {
     ? Math.min((campaign.goal_current / campaign.goal_target) * 100, 100) : 0
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f]">
+    <div className="min-h-screen bg-[#080c12]">
       {/* Header */}
-      <div className="border-b border-[var(--border)] px-4 md:px-6 py-4 sticky top-0 z-30 bg-[#0a0a0f]/90 backdrop-blur-sm">
+      <div className="border-b border-[var(--border)] px-4 md:px-6 py-4 sticky top-0 z-30 bg-[#080c12]/90 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-3 mb-3">
             <button onClick={() => router.push('/')} className="text-gray-400 hover:text-white">
@@ -163,7 +163,7 @@ export default function CampaignPage() {
 
                     {/* Name */}
                     <div className="col-span-3 flex items-center gap-2">
-                      {lead.is_pinned && <Pin size={12} className="text-orange-400 flex-shrink-0" />}
+                      {lead.is_pinned && <Pin size={12} className="text-cyan-400 flex-shrink-0" />}
                       <div>
                         <div className="font-medium text-sm flex items-center gap-1.5">
                           {lead.name}

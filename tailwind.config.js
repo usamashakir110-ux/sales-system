@@ -4,21 +4,34 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-body)', 'sans-serif'],
+        sans: ['var(--font-display)', 'sans-serif'],
         display: ['var(--font-display)', 'sans-serif'],
+        mono: ['var(--font-mono)', 'monospace'],
       },
       colors: {
         brand: {
-          50:  '#fff7ed',
-          100: '#ffedd5',
-          200: '#fed7aa',
-          300: '#fdba74',
-          400: '#fb923c',
-          500: '#f97316',
-          600: '#ea580c',
-          700: '#c2410c',
-          800: '#9a3412',
-          900: '#7c2d12',
+          50:  '#e0faff',
+          100: '#b3f3ff',
+          200: '#80ebff',
+          300: '#4de3ff',
+          400: '#00d4ff',
+          500: '#00b8e0',
+          600: '#0099cc',
+          700: '#007aaa',
+          800: '#005c88',
+          900: '#003d66',
+        },
+        accent: {
+          50:  '#e0fff3',
+          100: '#b3ffe2',
+          200: '#80ffd0',
+          300: '#4dffbe',
+          400: '#00ff9d',
+          500: '#00e088',
+          600: '#00cc7a',
+          700: '#00aa63',
+          800: '#00884d',
+          900: '#006636',
         }
       },
       keyframes: {
@@ -46,6 +59,10 @@ module.exports = {
         pulse: {
           '0%,100%': { transform: 'scale(1)' },
           '50%': { transform: 'scale(1.08)' },
+        },
+        'neon-pulse': {
+          '0%,100%': { boxShadow: '0 0 10px rgba(0,212,255,0.3)' },
+          '50%': { boxShadow: '0 0 25px rgba(0,212,255,0.6), 0 0 50px rgba(0,255,157,0.2)' },
         }
       },
       animation: {
@@ -56,6 +73,7 @@ module.exports = {
         'fill-bar': 'fill-bar 1s ease-out forwards',
         confetti: 'confetti 3s ease-in forwards',
         pulse: 'pulse 2s ease-in-out infinite',
+        'neon-pulse': 'neon-pulse 3s ease-in-out infinite',
       }
     },
   },

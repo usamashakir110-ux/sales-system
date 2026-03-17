@@ -107,10 +107,10 @@ export async function GET(req: NextRequest) {
   if (highPriority.length > 0 && process.env.REMINDER_EMAIL) {
     const taskList = highPriority.map((t: any) => `• ${t.title}`).join('\n')
     await resend.emails.send({
-      from: 'SalesOS <reminders@resend.dev>',
+      from: 'SSE — Shakir's Sales Engine <reminders@resend.dev>',
       to: process.env.REMINDER_EMAIL,
-      subject: `🚨 ${highPriority.length} urgent reminder${highPriority.length > 1 ? 's' : ''} — SalesOS`,
-      text: `You have urgent items due right now:\n\n${taskList}\n\nOpen SalesOS to take action.`,
+      subject: `🚨 ${highPriority.length} urgent reminder${highPriority.length > 1 ? 's' : ''} — SSE — Shakir's Sales Engine`,
+      text: `You have urgent items due right now:\n\n${taskList}\n\nOpen SSE — Shakir's Sales Engine to take action.`,
       html: `
         <div style="font-family: sans-serif; max-width: 480px; margin: 0 auto; padding: 24px;">
           <h2 style="color: #f97316; margin: 0 0 16px;">🚨 Urgent Reminders</h2>

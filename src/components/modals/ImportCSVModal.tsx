@@ -75,7 +75,7 @@ export default function ImportCSVModal({ campaignId, onClose, onImported }: Prop
 
   return (
     <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={onClose}>
-      <div className="bg-[#13131a] border border-[var(--border)] rounded-2xl w-full max-w-lg p-6"
+      <div className="bg-[var(--surface)] border border-[var(--border)] rounded-2xl w-full max-w-lg p-6"
         onClick={e => e.stopPropagation()}>
         <div className="flex items-center justify-between mb-5">
           <h2 className="font-display font-bold text-xl">Import from CSV</h2>
@@ -107,7 +107,7 @@ export default function ImportCSVModal({ campaignId, onClose, onImported }: Prop
             </div>
 
             {!file ? (
-              <label className="flex flex-col items-center justify-center border-2 border-dashed border-[var(--border)] hover:border-orange-500/50 rounded-2xl p-10 cursor-pointer transition-colors">
+              <label className="flex flex-col items-center justify-center border-2 border-dashed border-[var(--border)] hover:border-cyan-500/50 rounded-2xl p-10 cursor-pointer transition-colors">
                 <Upload size={32} className="text-gray-400 mb-3" />
                 <p className="font-medium">Click to upload CSV</p>
                 <p className="text-xs text-gray-500 mt-1">or drag and drop</p>

@@ -86,14 +86,14 @@ export default function FocusPage() {
   if (sessionState === 'done') {
     const isNewRecord = contactedCount > 0 && contactedCount >= personalBest
     return (
-      <div className="min-h-screen bg-[#0a0a0f] flex items-center justify-center px-4">
+      <div className="min-h-screen bg-[#080c12] flex items-center justify-center px-4">
         <div className="glass rounded-3xl p-8 md:p-12 text-center max-w-md w-full animate-pop-in">
           <div className="text-6xl mb-4">{isNewRecord ? '🏆' : '💪'}</div>
           <h1 className="font-display font-bold text-3xl mb-2">Session Complete!</h1>
-          {isNewRecord && <p className="text-orange-400 font-medium mb-4">🎉 New Personal Best!</p>}
+          {isNewRecord && <p className="text-cyan-400 font-medium mb-4">🎉 New Personal Best!</p>}
           <div className="grid grid-cols-2 gap-3 my-6">
             <div className="bg-white/5 rounded-xl p-4">
-              <div className="font-display font-bold text-2xl text-orange-400">{contactedCount}</div>
+              <div className="font-display font-bold text-2xl text-cyan-400">{contactedCount}</div>
               <div className="text-xs text-gray-400 mt-1">Leads contacted</div>
             </div>
             <div className="bg-white/5 rounded-xl p-4">
@@ -122,7 +122,7 @@ export default function FocusPage() {
 
   if (sessionState === 'idle') {
     return (
-      <div className="min-h-screen bg-[#0a0a0f] flex items-center justify-center px-4">
+      <div className="min-h-screen bg-[#080c12] flex items-center justify-center px-4">
         <div className="glass rounded-3xl p-8 md:p-12 text-center max-w-md w-full">
           <div className="text-5xl mb-4">🎯</div>
           <h1 className="font-display font-bold text-3xl mb-2">Focus Mode</h1>
@@ -133,7 +133,7 @@ export default function FocusPage() {
             <div className="flex gap-2 justify-center">
               {[25, 45, 60, 90].map(d => (
                 <button key={d} onClick={() => setDuration(d)}
-                  className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${duration === d ? 'bg-orange-500 text-white' : 'glass text-gray-400 hover:text-white'}`}>
+                  className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${duration === d ? 'bg-cyan-500 text-white' : 'glass text-gray-400 hover:text-white'}`}>
                   {d}m
                 </button>
               ))}
@@ -156,16 +156,16 @@ export default function FocusPage() {
 
   // Active session
   return (
-    <div className="min-h-screen bg-[#0a0a0f] flex flex-col">
+    <div className="min-h-screen bg-[#080c12] flex flex-col">
       {/* Timer bar */}
       <div className="h-1 bg-white/10">
-        <div className="h-full bg-orange-500 transition-all duration-1000" style={{ width: `${progress}%` }} />
+        <div className="h-full bg-cyan-500 transition-all duration-1000" style={{ width: `${progress}%` }} />
       </div>
 
       {/* Header */}
       <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border)]">
         <div className="flex items-center gap-4">
-          <div className={`font-display font-bold text-4xl ${remaining < 300 ? 'text-red-400' : 'text-orange-400'}`}>
+          <div className={`font-display font-bold text-4xl ${remaining < 300 ? 'text-red-400' : 'text-cyan-400'}`}>
             {String(mins).padStart(2, '0')}:{String(secs).padStart(2, '0')}
           </div>
           <div>
@@ -180,7 +180,7 @@ export default function FocusPage() {
             <div className="text-xs text-gray-500">contacted</div>
           </div>
           <div className="text-center">
-            <div className="font-display font-bold text-2xl text-orange-400">{sessionXP}</div>
+            <div className="font-display font-bold text-2xl text-cyan-400">{sessionXP}</div>
             <div className="text-xs text-gray-500">XP</div>
           </div>
           <div className="flex gap-2">
@@ -196,8 +196,8 @@ export default function FocusPage() {
 
       {/* Beat your record banner */}
       {contactedCount > 0 && contactedCount >= personalBest && (
-        <div className="bg-orange-500/10 border-b border-orange-500/20 px-6 py-2 text-center">
-          <span className="text-orange-400 text-sm font-medium animate-pulse">
+        <div className="bg-cyan-500/10 border-b border-cyan-500/20 px-6 py-2 text-center">
+          <span className="text-cyan-400 text-sm font-medium animate-pulse">
             🔥 You're matching your personal best! Keep going!
           </span>
         </div>
@@ -212,7 +212,7 @@ export default function FocusPage() {
               className="flex items-center justify-between p-4 glass rounded-xl hover:bg-white/5 cursor-pointer transition-all group">
               <div className="flex items-center gap-3">
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm
-                  ${(lead.score_override ?? lead.score) >= 8 ? 'bg-green-500/20 text-green-400' : 'bg-orange-500/20 text-orange-400'}`}>
+                  ${(lead.score_override ?? lead.score) >= 8 ? 'bg-green-500/20 text-green-400' : 'bg-cyan-500/20 text-cyan-400'}`}>
                   {lead.score_override ?? lead.score}
                 </div>
                 <div>

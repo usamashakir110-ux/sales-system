@@ -29,7 +29,7 @@ export default function NewCampaignModal({ onClose, onCreated }: Props) {
 
   return (
     <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={onClose}>
-      <div className="bg-[#13131a] border border-[var(--border)] rounded-2xl w-full max-w-md p-6"
+      <div className="bg-[var(--surface)] border border-[var(--border)] rounded-2xl w-full max-w-md p-6"
         onClick={e => e.stopPropagation()}>
         <div className="flex items-center justify-between mb-5">
           <h2 className="font-display font-bold text-xl">New Campaign</h2>

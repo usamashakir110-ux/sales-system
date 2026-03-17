@@ -58,9 +58,9 @@ export default function CelebrationModal({ title, subtitle, xp, onClose }: Props
 
         <p className="text-xl text-gray-300 mb-6">{subtitle}</p>
 
-        <div className="inline-flex items-center gap-3 bg-orange-500/20 border border-orange-500/40 rounded-2xl px-6 py-4 mb-8">
-          <Zap size={24} className="text-orange-400" fill="currentColor" />
-          <span className="font-display font-black text-3xl text-orange-400">+{xp.toLocaleString()} XP</span>
+        <div className="inline-flex items-center gap-3 bg-cyan-500/20 border border-cyan-500/40 rounded-2xl px-6 py-4 mb-8">
+          <Zap size={24} className="text-cyan-400" fill="currentColor" />
+          <span className="font-display font-black text-3xl text-cyan-400">+{xp.toLocaleString()} XP</span>
         </div>
 
         <p className="text-gray-400 text-sm mb-6">That's what talent + work looks like. 🔥</p>

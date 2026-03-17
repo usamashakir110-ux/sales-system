@@ -43,8 +43,8 @@ export default function TemplatesPage() {
   const filtered = templates.filter(t => t.channel === activeChannel)
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] pb-20">
-      <div className="sticky top-0 z-30 bg-[#0a0a0f]/90 backdrop-blur-sm border-b border-[var(--border)] px-4 py-4">
+    <div className="min-h-screen bg-[#080c12] pb-20">
+      <div className="sticky top-0 z-30 bg-[#080c12]/90 backdrop-blur-sm border-b border-[var(--border)] px-4 py-4">
         <div className="max-w-3xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Link href="/" className="text-gray-400 hover:text-white"><ArrowLeft size={20} /></Link>
@@ -62,7 +62,7 @@ export default function TemplatesPage() {
           {CHANNELS.map(ch => (
             <button key={ch} onClick={() => setActiveChannel(ch)}
               className={`px-4 py-2 rounded-xl text-sm font-medium capitalize transition-all
-                ${activeChannel === ch ? 'bg-orange-500 text-white' : 'glass text-gray-400 hover:text-white'}`}>
+                ${activeChannel === ch ? 'bg-cyan-500 text-white' : 'glass text-gray-400 hover:text-white'}`}>
               {ch === 'linkedin' ? 'LinkedIn' : ch}
               <span className="ml-1.5 text-xs opacity-70">({templates.filter(t => t.channel === ch).length})</span>
             </button>
@@ -71,7 +71,7 @@ export default function TemplatesPage() {
 
         {/* Create form */}
         {creating && (
-          <div className="glass rounded-2xl p-5 mb-4 border border-orange-500/30">
+          <div className="glass rounded-2xl p-5 mb-4 border border-cyan-500/30">
             <div className="flex items-center justify-between mb-3">
               <p className="font-medium text-sm">New {activeChannel} template</p>
               <button onClick={() => setCreating(false)}><X size={16} className="text-gray-400" /></button>
