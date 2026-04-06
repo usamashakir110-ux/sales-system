@@ -20,10 +20,11 @@ export default function Dashboard() {
   const [callbacks, setCallbacks] = useState<Lead[]>([])
   const [showNewCampaign, setShowNewCampaign] = useState(false)
   const [celebration, setCelebration] = useState<{title:string,subtitle:string,xp:number}|null>(null)
-  const [now, setNow] = useState(new Date())
-  const hour = now.getHours()
+  const [now, setNow] = useState<Date | null>(null)
+  const hour = now ? now.getHours() : new Date().getHours()
 
   useEffect(() => {
+    setNow(new Date())
     loadAll()
     const timer = setInterval(() => setNow(new Date()), 30000)
     return () => clearInterval(timer)
@@ -52,13 +53,14 @@ export default function Dashboard() {
   }
 
 
+  const levelInfo = stats ? getLevelInfo(stats.total_xp) : null
   const flameIntensity = stats ? getFlameIntensity(stats.streak_days, hour) : 'dead'
   const flameClass = `flame-${flameIntensity}`
 
   const greeting = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening'
 
   function getCountdown(dateStr: string) {
-    const diff = differenceInMinutes(new Date(dateStr), now)
+    const diff = differenceInMinutes(new Date(dateStr), now ?? new Date())
     if (diff < 0) return { label: 'Overdue', urgent: true }
     if (diff < 2) return { label: `${diff}m`, urgent: true }
     if (diff < 60) return { label: `${diff}m`, urgent: diff < 10 }
