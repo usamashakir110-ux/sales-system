@@ -12,6 +12,7 @@ export interface Campaign {
   color: string
   created_at: string
   is_active: boolean
+  parent_campaign_id: string | null
 }
 
 export interface Lead {
