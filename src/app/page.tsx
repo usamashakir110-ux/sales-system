@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { format, isToday, isPast, differenceInMinutes } from 'date-fns'
 import {
   Flame, Zap, Target, Plus, ChevronRight, Clock,
-  TrendingUp, Trophy, Star, Coffee, ArrowRight
+  TrendingUp, Trophy, Star, Coffee, ArrowRight, Trash2
 } from 'lucide-react'
 import CelebrationModal from '@/components/modals/CelebrationModal'
 import NewCampaignModal from '@/components/modals/NewCampaignModal'
@@ -42,7 +42,16 @@ export default function Dashboard() {
     if (cb) setCallbacks(cb.sort((a: Lead, b: Lead) => new Date(a.scheduled_callback_at!).getTime() - new Date(b.scheduled_callback_at!).getTime()))
   }
 
-  const levelInfo = stats ? getLevelInfo(stats.total_xp) : null
+  async function deleteCampaign(e: React.MouseEvent, campaignId: string, campaignName: string) {
+    e.preventDefault()
+    e.stopPropagation()
+    if (!confirm(`Delete "${campaignName}"? This will also delete all leads inside it. This cannot be undone.`)) return
+    await supabase.from('leads').delete().eq('campaign_id', campaignId)
+    await supabase.from('campaigns').delete().eq('id', campaignId)
+    setCampaigns(prev => prev.filter(c => c.id !== campaignId))
+  }
+
+
   const flameIntensity = stats ? getFlameIntensity(stats.streak_days, hour) : 'dead'
   const flameClass = `flame-${flameIntensity}`
 
@@ -241,7 +250,16 @@ export default function Dashboard() {
                         <h3 className="font-display font-semibold">{c.name}</h3>
                         {c.description && <p className="text-xs text-gray-400 mt-0.5 line-clamp-1">{c.description}</p>}
                       </div>
-                      <ChevronRight size={16} className="text-gray-600 group-hover:text-gray-400 mt-1 transition-colors" />
+                      <div className="flex items-center gap-1">
+                        <button
+                          onClick={(e) => deleteCampaign(e, c.id, c.name)}
+                          className="p-1.5 rounded-lg text-gray-600 hover:text-red-400 hover:bg-red-500/10 transition-colors opacity-0 group-hover:opacity-100"
+                          title="Delete campaign"
+                        >
+                          <Trash2 size={13} />
+                        </button>
+                        <ChevronRight size={16} className="text-gray-600 group-hover:text-gray-400 mt-1 transition-colors" />
+                      </div>
                     </div>
 
                     {c.goal_target > 0 && (
