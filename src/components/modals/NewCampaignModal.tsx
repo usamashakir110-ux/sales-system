@@ -2,11 +2,11 @@
 import { useState } from 'react'
 import { X } from 'lucide-react'
 
-interface Props { onClose: () => void; onCreated: () => void }
+interface Props { onClose: () => void; onCreated: () => void; parentCampaignId?: string }
 
 const COLORS = ['#f97316', '#3b82f6', '#10b981', '#8b5cf6', '#f43f5e', '#06b6d4', '#f59e0b']
 
-export default function NewCampaignModal({ onClose, onCreated }: Props) {
+export default function NewCampaignModal({ onClose, onCreated, parentCampaignId }: Props) {
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
   const [goalType, setGoalType] = useState('calls')
@@ -31,6 +31,7 @@ export default function NewCampaignModal({ onClose, onCreated }: Props) {
         goal_current: 0,
         color,
         is_active: true,
+        ...(parentCampaignId ? { parent_campaign_id: parentCampaignId } : {}),
       })
     })
 
